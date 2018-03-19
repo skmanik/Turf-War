@@ -60,6 +60,9 @@ $(".dino-select").one("click", ".default-port", function() {
     ourDino.isChosen = true;
 
     $(".dino-select h2").text("Player");
+
+    // idle animation for chosen dino
+    $("#" + chosenId + " img").attr("src", "assets/images/activedino.gif")
     console.log(ourDino);
 
     // remove unchosen dinos and add to enemy section
@@ -89,6 +92,9 @@ $(".enemies").one("click", ".default-port", function() {
 
     // move selected enemy to defender section
     $("#" + enemyId).detach().appendTo("#active-enemy");
+
+    // idle animation for chosen dino
+    $("#" + enemyId + " img").attr("src", "assets/images/activedino.gif")
 
     // move up header
     $("header").css("height", "0px");

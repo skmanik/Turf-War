@@ -15,6 +15,7 @@ body {
     color: #404040;
     height: 100%;
     overflow: hidden;
+    font-family: 'Press Start 2P', sans-serif;
 }
 
 header {
@@ -33,11 +34,10 @@ header {
     transform: skewY(3deg);
 
     /* for removal */
-    transition: 0.6s ease-out;
+    transition: 0.5s ease-out;
 }
 
 h1 {
-    font-family: 'Press Start 2P', sans-serif;
     font-weight: normal;
     z-index: 1;
     color: #fefdff;
@@ -50,7 +50,6 @@ h1 {
 }
 
 h2 {
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 1.55em;
     text-transform: lowercase;
     margin: 20px 0;
@@ -59,7 +58,6 @@ h2 {
 }
 
 h4 {
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 0.8em;
     text-transform: uppercase;
 }
@@ -104,7 +102,6 @@ section.dino-select {
     bottom: -25px;
     width: 100%;
     text-align: center;
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 13px;
     text-transform: lowercase;
 }
@@ -171,19 +168,17 @@ section.dino-select {
     text-align: center;
     background: #ffffff52;
     padding: 10px 30px 30px 30px;
-    animation-delay: 0.7s;
+    animation-delay: 0.6s;
 }
 
 .widget .button {
     display: block;
-    font-family: 'Press Start 2P', sans-serif;
+    position: relative;
     text-transform: uppercase;
     background: #88e76f;
     padding: 20px 25px;
+    box-shadow: 0px 6px #79d264;
     cursor: pointer;
-    border: 10px solid #7ed766;
-    border-width: 0 0px 5px 0px;
-    box-shadow: 0px 2px 2px #0000002e;
 }
 
 /* stat boxes */
@@ -201,12 +196,11 @@ section.dino-select {
     background: #ffffff52;
     padding: 5px 10px;
     margin-top: 20px;
-    animation-delay: 0.7s;
+    animation-delay: 0.6s;
 }
 
 .rs-label {
     float: left;
-    font-family: 'Press Start 2P', sans-serif;
     font-size: 8px;
     line-height: 11px;
     margin-left: 5px;
@@ -230,4 +224,11 @@ section.dino-select {
     height: 100%;
     float: left;
     background: #fff478;
+}
+
+/* == animations == */
+
+.widget .button:hover {
+    top: 2px;
+    box-shadow: 0px 4px #79d264;
 }
