@@ -118,6 +118,14 @@ section.dino-select {
     left: 20px;
 }
 
+.defense-area #active-enemy {
+    float: left;
+}
+
+.defense-area .default-port {
+    margin-right: 20px;
+}
+
 .enemies {
     position: absolute;
     top: 20px;
@@ -133,4 +141,49 @@ section.dino-select {
 
 .enemies .default-port:last-of-type {
     margin-left: 0;
+}
+
+/* stat boxes */
+
+#health-bar {
+    background: #f77;
+    width: 100px;
+    height: 100%;
+    float: left;
+}
+
+.ready-stats {
+    display: none;
+    float: left;
+    background: #ffffff52;
+    padding: 5px 10px;
+    margin-top: 20px;
+}
+
+.rs-label {
+    float: left;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 8px;
+    line-height: 11px;
+    margin-left: 5px;
+    word-spacing: -5px;
+}
+
+.ready-stats .row {
+    margin: 8px 0;
+    height: 10px;
+}
+
+#cattack-bar {
+    width: 50px;
+    height: 100%;
+    float: left;
+    background: #746bff;
+}
+
+#attack-bar {
+    width: 10px;
+    height: 100%;
+    float: left;
+    background: #fff478;
 }

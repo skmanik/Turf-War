@@ -88,7 +88,7 @@ $(".enemies").one("click", ".default-port", function() {
     console.log(enemyDino);
 
     // move selected enemy to defender section
-    $("#" + enemyId).detach().appendTo(".defense-area");
+    $("#" + enemyId).detach().appendTo("#active-enemy");
 
 });
 
