@@ -1,6 +1,20 @@
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
 body {
     background: url("../images/grass.png");
     color: #404040;
+    height: 100%;
+    overflow: hidden;
 }
 
 header {
@@ -17,6 +31,9 @@ header {
     /* prefix this */
     filter: hue-rotate(-20deg) saturate(2000%);
     transform: skewY(3deg);
+
+    /* for removal */
+    transition: 0.6s ease-out;
 }
 
 h1 {
@@ -143,6 +160,32 @@ section.dino-select {
     margin-left: 0;
 }
 
+/* widget */
+.widget {
+    display: none;
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    margin-left: -200px;
+    width: 400px;
+    text-align: center;
+    background: #ffffff52;
+    padding: 10px 30px 30px 30px;
+    animation-delay: 0.7s;
+}
+
+.widget .button {
+    display: block;
+    font-family: 'Press Start 2P', sans-serif;
+    text-transform: uppercase;
+    background: #88e76f;
+    padding: 20px 25px;
+    cursor: pointer;
+    border: 10px solid #7ed766;
+    border-width: 0 0px 5px 0px;
+    box-shadow: 0px 2px 2px #0000002e;
+}
+
 /* stat boxes */
 
 #health-bar {
@@ -158,6 +201,7 @@ section.dino-select {
     background: #ffffff52;
     padding: 5px 10px;
     margin-top: 20px;
+    animation-delay: 0.7s;
 }
 
 .rs-label {

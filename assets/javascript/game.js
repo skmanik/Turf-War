@@ -90,6 +90,15 @@ $(".enemies").one("click", ".default-port", function() {
     // move selected enemy to defender section
     $("#" + enemyId).detach().appendTo("#active-enemy");
 
+    // move up header
+    $("header").css("height", "0px");
+
+    // move in statbox
+    $(".ready-stats").css("display", "block");
+
+    // move in widget
+    $(".widget").css("display", "block");
+
 });
 
 
