@@ -8,6 +8,7 @@
     <!-- other CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Press+Start+2P" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- my stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
@@ -30,8 +31,11 @@
 
     <section class="dino-select">
 
-        <h2>Select <span id="dyna-head"></span></h2>
+        <h2>Select
+            <span id="dyna-head"></span>
+        </h2>
 
+        <!-- default dino portraits -->
         <div class="default-port" id="yellow">
             <img src="assets/images/stilldino.gif">
             <span>Julio</span>
@@ -41,16 +45,34 @@
             <span>Diego</span>
         </div>
         <div class="default-port" id="purple">
-            <img src="assets/images/stilldino.gif">
-            <span>Andrés</span>
+                <img src="assets/images/stilldino.gif">
+                <span>Andrés</span>
         </div>
+
+        <!--unhide later
         <div class="default-port" id="blue">
             <img src="assets/images/stilldino.gif">
-            <span>belén</span>
+            <span>Belén</span>
         </div>
+        -->
+        <!-- end default dino portraits -->
 
     </section>
 
-</body>
+    <section class="enemies">
 
+        <h2>enemies</h2>
+
+    </section>
+
+    <section class="defense-area">
+
+        <h2>Defender</h2>
+
+    </section>
+
+
+    <!-- my javascript -->
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
+</body>
 </html>
