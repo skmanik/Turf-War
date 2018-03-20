@@ -218,23 +218,30 @@ section.dino-select {
 
 .health-bar {
     background: #f77;
-    width: 100px;
+    width: 0;
     height: 100%;
     float: left;
+    transition: 5s ease-in-out;
+    transition-delay: 5s;
 }
 
 .cattack-bar {
-    width: 50px;
+    width: 0;
     height: 100%;
     float: left;
     background: #746bff;
+    transition: 5s ease-in-out;
+    transition-delay: 5s;
 }
 
 .attack-bar {
-    width: 10px;
+    width: 0;
     height: 100%;
     float: left;
     background: #fff478;
+    transition: 5s ease-in-out;
+    transition-delay: 5s;
+
 }
 
 /* == animations == */

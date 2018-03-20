@@ -38,11 +38,15 @@ var belenDino = {
     id: "purple",
     name: "Belén",
     healthPoints: 90,
-    attackpower: 20,
+    attackPower: 20,
     counterAttack: 30,
     isChosen: false,
     isActiveEnemy: false
 }
+
+// dinos once selected
+var ourDinoOut;
+var enemyDinoOut;
 
 // array for objects
 var dinoArray = [julioDino, diegoDino, andresDino, belenDino];
@@ -57,6 +61,19 @@ function getDinoWithId(matchId) {
         }
     }
 }
+
+// function that updates dino stats
+function updateStats() {
+
+    $("#player-stats .health-bar").css("width", ourDinoOut.healthPoints + "px");
+    $("#player-stats .cattack-bar").css("width", ourDinoOut.counterAttack + "px");
+    $("#player-stats .attack-bar").css("width", ourDinoOut.attackPower + "px");
+
+    $("#enemy-stats .health-bar").css("width", enemyDinoOut.healthPoints + "px");
+    $("#enemy-stats .cattack-bar").css("width", enemyDinoOut.counterAttack + "px");
+    $("#enemy-stats .attack-bar").css("width", enemyDinoOut.attackPower + "px");
+
+};
 
 // ======================== GAME START
 // ===================================
@@ -75,7 +92,6 @@ $(".dino-select").one("click", ".default-port", function() {
     // remove blink animation on select
     $("#" + chosenId).removeClass("flipInY").addClass("flipInX");
     $(".dino-select h2").removeClass("opacityPulse-css");
-
 
     $(".dino-select h2").text("Player");
 
@@ -97,7 +113,8 @@ $(".dino-select").one("click", ".default-port", function() {
     // add blink animation to direct user
     $(".enemies h2").addClass("opacityPulse-css");
 
-    return ourDino;
+    // update dino variable outside function
+    ourDinoOut = ourDino;
 
 });
 
@@ -136,15 +153,24 @@ $(".enemies").one("click", ".default-port", function() {
     // add blink animation to direct user: need to put a delay somehow before i add this
     // $(".widget h2").addClass("opacityPulse-css");
 
-    return enemyDino;
+    // update dino variable outside function
+    enemyDinoOut = enemyDino;
+
+    // update all dino stats
+    updateStats();
 
 });
 
 // onclick for ATTACK BUTTON that signals fight sequence. PERFORMED REPEATEDLY.
 $(".widget").on("click", ".button", function() {
+
+    // putting this in here temporarily
+    // updateStats();
+
     console.log("You clicked attack! Good boy!");
 
     $(".widget #combat-text").text("Enemy took damage from that hit! Ow.");
+
 });
 
 // document ready closing tag

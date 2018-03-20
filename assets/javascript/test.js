@@ -14,10 +14,14 @@ var testDino2 = {
     counterAttack: 5
 }
 
-$("#player-stats .health-bar").css("width", testDino1.healthPoints);
-$("#player-stats .cattack-bar").css("width", testDino1.counterAttack);
-$("#player-stats .attack-bar").css("width", testDino1.attackPower);
+function updateStats() {
 
-$("#enemy-stats .health-bar").css("width", testDino2.healthPoints);
-$("#enemy-stats .cattack-bar").css("width", testDino2.counterAttack);
-$("#enemy-stats .attack-bar").css("width", testDino2.attackPower);
+    $("#player-stats .health-bar").css("width", ourDino.healthPoints);
+    $("#player-stats .cattack-bar").css("width", ourDino.counterAttack);
+    $("#player-stats .attack-bar").css("width", ourDino.attackPower);
+
+    $("#enemy-stats .health-bar").css("width", enemyDino.healthPoints);
+    $("#enemy-stats .cattack-bar").css("width", enemyDino.counterAttack);
+    $("#enemy-stats .attack-bar").css("width", enemyDino.attackPower);
+
+};
