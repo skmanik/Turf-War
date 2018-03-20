@@ -183,14 +183,16 @@ section.dino-select {
     cursor: pointer;
 }
 
-/* stat boxes */
-
-#health-bar {
-    background: #f77;
-    width: 100px;
-    height: 100%;
-    float: left;
+#combat-text {
+    position: absolute;
+    left: 0;
+    bottom: -75px;
+    font-size: 10px;
+    text-transform: uppercase;
+    width: 100%;
 }
+
+/* stat boxes */
 
 .ready-stats {
     display: none;
@@ -214,14 +216,21 @@ section.dino-select {
     height: 10px;
 }
 
-#cattack-bar {
+.health-bar {
+    background: #f77;
+    width: 100px;
+    height: 100%;
+    float: left;
+}
+
+.cattack-bar {
     width: 50px;
     height: 100%;
     float: left;
     background: #746bff;
 }
 
-#attack-bar {
+.attack-bar {
     width: 10px;
     height: 100%;
     float: left;

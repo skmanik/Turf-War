@@ -19,8 +19,9 @@
 <body>
     <!-- hidden widget -->
     <div class="widget animated bounceInDown">
-        <h2>Fight!</h2>
-        <a class="button">Attack</a>
+        <h2>Fight!!</h2>
+        <a class="button"><span>Attack</span></a>
+        <div id="combat-text"></div>
     </div>
     <!-- end hidden widget -->
 
@@ -61,15 +62,15 @@
         <!-- end default dino portraits -->
 
         <!-- hidden stats -->
-        <div class="ready-stats animated bounceInUp">
+        <div class="ready-stats animated bounceInUp" id="player-stats">
             <div class="row">
-                <div id="health-bar"></div><div class="rs-label">100 HP</div>
+                <div class="health-bar"></div><div class="rs-label">100 HP</div>
             </div>
             <div class="row">
-                <div id="cattack-bar"></div><div class="rs-label">50 CP</div>
+                <div class="cattack-bar"></div><div class="rs-label">50 CP</div>
             </div>
             <div class="row">
-                <div id="attack-bar"></div><div class="rs-label">10 AP</div>
+                <div class="attack-bar"></div><div class="rs-label">10 AP</div>
             </div>
         </div>
         <!-- end hidden stats -->
@@ -89,15 +90,15 @@
         <div id="active-enemy"></div>
 
         <!-- hidden stats -->
-        <div class="ready-stats animated bounceInUp">
+        <div class="ready-stats animated bounceInUp" id="enemy-stats">
             <div class="row">
-                <div id="health-bar"></div><div class="rs-label">100 HP</div>
+                <div class="health-bar"></div><div class="rs-label">100 HP</div>
             </div>
             <div class="row">
-                <div id="cattack-bar"></div><div class="rs-label">50 CP</div>
+                <div class="cattack-bar"></div><div class="rs-label">50 CP</div>
             </div>
             <div class="row">
-                <div id="attack-bar"></div><div class="rs-label">10 AP</div>
+                <div class="attack-bar"></div><div class="rs-label">10 AP</div>
             </div>
         </div>
         <!-- end hidden stats -->
@@ -107,5 +108,6 @@
 
     <!-- my javascript -->
     <script type="text/javascript" src="assets/javascript/game.js"></script>
+    <script type="text/javascript" src="assets/javascript/test.js"></script>
 </body>
 </html>

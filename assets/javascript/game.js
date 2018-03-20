@@ -6,6 +6,7 @@ $(document).ready(function() {
 // dino objects
 var julioDino = {
     id: "yellow",
+    name: "Julio",
     healthPoints: 100,
 	attackPower: 10,
     counterAttack: 5,
@@ -15,6 +16,7 @@ var julioDino = {
 
 var diegoDino = {
     id: "orange",
+    name: "Diego",
     healthPoints: 80,
     attackPower: 30,
     counterAttack: 3,
@@ -24,6 +26,7 @@ var diegoDino = {
 
 var andresDino = {
     id: "blue",
+    name: "Andrés",
     healthPoints: 120,
     attackPower: 5,
     counterAttack: 10,
@@ -33,6 +36,7 @@ var andresDino = {
 
 var belenDino = {
     id: "purple",
+    name: "Belén",
     healthPoints: 90,
     attackpower: 20,
     counterAttack: 30,
@@ -68,7 +72,7 @@ $(".dino-select").one("click", ".default-port", function() {
 
     ourDino.isChosen = true;
 
-    // test animation
+    // remove blink animation on select
     $("#" + chosenId).removeClass("flipInY").addClass("flipInX");
     $(".dino-select h2").removeClass("opacityPulse-css");
 
@@ -90,15 +94,17 @@ $(".dino-select").one("click", ".default-port", function() {
         }
     }
 
-    // test animation
+    // add blink animation to direct user
     $(".enemies h2").addClass("opacityPulse-css");
+
+    return ourDino;
 
 });
 
 // onclick that selects an enemy to fight, ONLY PERFORMED ONCE
 $(".enemies").one("click", ".default-port", function() {
 
-    // test animation
+    // remove blink animation
     $(".enemies h2").removeClass("opacityPulse-css");
     console.log("Selected an enemy!");
 
@@ -109,7 +115,7 @@ $(".enemies").one("click", ".default-port", function() {
     enemyDino.isActiveEnemy = true;
     console.log(enemyDino);
 
-    // test animations
+    // add new flip animation
     $("#" + enemyId).removeClass("flipInY").addClass("flipInX");
 
     // move selected enemy to defender section
@@ -127,8 +133,19 @@ $(".enemies").one("click", ".default-port", function() {
     // move in widget
     $(".widget").css("display", "block");
 
+    // add blink animation to direct user: need to put a delay somehow before i add this
+    // $(".widget h2").addClass("opacityPulse-css");
+
+    return enemyDino;
+
 });
 
+// onclick for ATTACK BUTTON that signals fight sequence. PERFORMED REPEATEDLY.
+$(".widget").on("click", ".button", function() {
+    console.log("You clicked attack! Good boy!");
+
+    $(".widget #combat-text").text("Enemy took damage from that hit! Ow.");
+});
 
 // document ready closing tag
 });
