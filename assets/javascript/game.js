@@ -23,7 +23,7 @@ var diegoDino = {
 };
 
 var andresDino = {
-    id: "purple",
+    id: "blue",
     healthPoints: 120,
     attackPower: 5,
     counterAttack: 10,
@@ -31,8 +31,17 @@ var andresDino = {
     isActiveEnemy: false
 }
 
+var belenDino = {
+    id: "purple",
+    healthPoints: 90,
+    attackpower: 20,
+    counterAttack: 30,
+    isChosen: false,
+    isActiveEnemy: false
+}
+
 // array for objects
-var dinoArray = [julioDino, diegoDino, andresDino];
+var dinoArray = [julioDino, diegoDino, andresDino, belenDino];
 
 // function that loops through objects
 function getDinoWithId(matchId) {
@@ -59,6 +68,11 @@ $(".dino-select").one("click", ".default-port", function() {
 
     ourDino.isChosen = true;
 
+    // test animations
+    $("#" + chosenId).removeClass("flipInY").addClass("flipInX");
+    $(".dino-select h2").removeClass("opacityPulse-css");
+
+
     $(".dino-select h2").text("Player");
 
     // idle animation for chosen dino
@@ -81,7 +95,7 @@ $(".dino-select").one("click", ".default-port", function() {
 // onclick that selects an enemy to fight, ONLY PERFORMED ONCE
 $(".enemies").one("click", ".default-port", function() {
 
-    console.log("Chosen an enemy!");
+    console.log("Selected an enemy!");
 
     // match HTML id to object id
     var enemyId = $(this).attr("id");
@@ -89,6 +103,9 @@ $(".enemies").one("click", ".default-port", function() {
 
     enemyDino.isActiveEnemy = true;
     console.log(enemyDino);
+
+    // test animations
+    $("#" + enemyId).removeClass("flipInY").addClass("flipInX");
 
     // move selected enemy to defender section
     $("#" + enemyId).detach().appendTo("#active-enemy");

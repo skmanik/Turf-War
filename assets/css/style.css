@@ -158,6 +158,7 @@ section.dino-select {
 }
 
 /* widget */
+
 .widget {
     display: none;
     position: absolute;
@@ -175,9 +176,10 @@ section.dino-select {
     display: block;
     position: relative;
     text-transform: uppercase;
-    background: #88e76f;
-    padding: 20px 25px;
-    box-shadow: 0px 6px #79d264;
+    background: #ff7979;
+    padding: 25px 25px 20px 25px;
+    box-shadow: 0px 6px #d66664;
+    border-radius: 8px;
     cursor: pointer;
 }
 
@@ -227,8 +229,66 @@ section.dino-select {
 }
 
 /* == animations == */
+/* ================ */
 
 .widget .button:hover {
+    /* prefix this */
+    filter: brightness(98%);
+}
+
+.widget .button:active {
     top: 2px;
-    box-shadow: 0px 4px #79d264;
+    box-shadow: 0px 4px #d56663;
+
+    /* prefix this */
+    filter: brightness(98%);
+}
+
+/* dino colors */
+
+#purple:hover {
+    background: #c6b3f9;
+}
+
+#blue:hover {
+    background: #a3b2ff;
+}
+
+#orange:hover {
+    background: #ffc387;
+}
+
+#yellow:hover {
+    background: #fff5a3;
+}
+
+/* select blink */
+.opacityPulse-css {
+    animation: opacityPulse 1.25s ease-out;
+    animation-iteration-count: infinite; 
+    opacity: 1;
+}
+
+@keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+
+@keyframes opacityPulse {
+    0% {opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {opacity: 0.0;}
+}
+
+@-webkit-keyframes pulsate {
+    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}
+
+@-webkit-keyframes opacityPulse {
+    0% {opacity: 0.0;}
+    50% {opacity: 1.0;}
+    100% {opacity: 0.0;}
 }

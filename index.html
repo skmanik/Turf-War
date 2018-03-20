@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Turf War</title>
+    <link rel="icon" type="image/png" href="assets/images/favi.png" sizes="16x16">
 
     <!-- other CDNs -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -13,16 +14,15 @@
     <!-- my stylesheets -->
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
 <body>
-    <!-- widget -->
+    <!-- hidden widget -->
     <div class="widget animated bounceInDown">
         <h2>Fight!</h2>
         <a class="button">Attack</a>
     </div>
-    <!-- widget -->
+    <!-- end hidden widget -->
 
     <!-- don't put anything in this -->
     <header></header>
@@ -37,7 +37,7 @@
 
     <section class="dino-select">
 
-        <h2>Select
+        <h2 class="opacityPulse-css">Select
             <span id="dyna-head"></span>
         </h2>
 
@@ -50,12 +50,17 @@
             <img src="assets/images/stilldino.gif">
             <span>Diego</span>
         </div>
-        <div class="default-port animated flipInY" id="purple">
+        <div class="default-port animated flipInY" id="blue">
                 <img src="assets/images/stilldino.gif">
                 <span>Andrés</span>
         </div>
+        <div class="default-port animated flipInY" id="purple">
+                <img src="assets/images/stilldino.gif">
+                <span>Belén</span>
+        </div>
         <!-- end default dino portraits -->
 
+        <!-- hidden stats -->
         <div class="ready-stats animated bounceInUp">
             <div class="row">
                 <div id="health-bar"></div><div class="rs-label">100 HP</div>
@@ -67,6 +72,7 @@
                 <div id="attack-bar"></div><div class="rs-label">10 AP</div>
             </div>
         </div>
+        <!-- end hidden stats -->
 
     </section>
 
@@ -82,17 +88,19 @@
 
         <div id="active-enemy"></div>
 
+        <!-- hidden stats -->
         <div class="ready-stats animated bounceInUp">
-                <div class="row">
-                    <div id="health-bar"></div><div class="rs-label">100 HP</div>
-                </div>
-                <div class="row">
-                    <div id="cattack-bar"></div><div class="rs-label">50 CP</div>
-                </div>
-                <div class="row">
-                    <div id="attack-bar"></div><div class="rs-label">10 AP</div>
-                </div>
+            <div class="row">
+                <div id="health-bar"></div><div class="rs-label">100 HP</div>
+            </div>
+            <div class="row">
+                <div id="cattack-bar"></div><div class="rs-label">50 CP</div>
+            </div>
+            <div class="row">
+                <div id="attack-bar"></div><div class="rs-label">10 AP</div>
+            </div>
         </div>
+        <!-- end hidden stats -->
 
     </section>
 
