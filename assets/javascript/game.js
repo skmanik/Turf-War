@@ -44,7 +44,7 @@ var belenDino = {
     isActiveEnemy: false
 }
 
-// dinos once selected
+// dinos variables updated outside their onclick functions
 var ourDinoOut;
 var enemyDinoOut;
 
@@ -65,15 +65,29 @@ function getDinoWithId(matchId) {
 // function that updates dino stats
 function updateStats() {
 
+    // player stats
     $("#player-stats .health-bar").css("width", ourDinoOut.healthPoints + "px");
-    $("#player-stats .cattack-bar").css("width", ourDinoOut.counterAttack + "px");
     $("#player-stats .attack-bar").css("width", ourDinoOut.attackPower + "px");
+    $("#player-stats .cattack-bar").css("width", ourDinoOut.counterAttack + "px");
 
+    $("#player-stats .health .rs-label").text(ourDinoOut.healthPoints + " HP");
+    $("#player-stats .attack .rs-label").text(ourDinoOut.attackPower + " AP");
+    $("#player-stats .cattack .rs-label").text(ourDinoOut.counterAttack + " CP");
+
+
+    // enemy stats
     $("#enemy-stats .health-bar").css("width", enemyDinoOut.healthPoints + "px");
-    $("#enemy-stats .cattack-bar").css("width", enemyDinoOut.counterAttack + "px");
     $("#enemy-stats .attack-bar").css("width", enemyDinoOut.attackPower + "px");
+    $("#enemy-stats .cattack-bar").css("width", enemyDinoOut.counterAttack + "px");
+
+    $("#enemy-stats .health .rs-label").text(enemyDinoOut.healthPoints + " HP");
+    $("#enemy-stats .attack .rs-label").text(enemyDinoOut.attackPower + " AP");
+    $("#enemy-stats .cattack .rs-label").text(enemyDinoOut.counterAttack + " CP");
 
 };
+
+// delay variable to line up animations
+var delayInMilliseconds = 1000;
 
 // ======================== GAME START
 // ===================================
@@ -156,8 +170,13 @@ $(".enemies").one("click", ".default-port", function() {
     // update dino variable outside function
     enemyDinoOut = enemyDino;
 
-    // update all dino stats
-    updateStats();
+    // display stats of dinos for battle; delayed for style
+
+    setTimeout(function() {
+
+        updateStats();
+
+    }, delayInMilliseconds);
 
 });
 
