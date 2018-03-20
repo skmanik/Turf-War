@@ -68,7 +68,7 @@ $(".dino-select").one("click", ".default-port", function() {
 
     ourDino.isChosen = true;
 
-    // test animations
+    // test animation
     $("#" + chosenId).removeClass("flipInY").addClass("flipInX");
     $(".dino-select h2").removeClass("opacityPulse-css");
 
@@ -90,11 +90,16 @@ $(".dino-select").one("click", ".default-port", function() {
         }
     }
 
+    // test animation
+    $(".enemies h2").addClass("opacityPulse-css");
+
 });
 
 // onclick that selects an enemy to fight, ONLY PERFORMED ONCE
 $(".enemies").one("click", ".default-port", function() {
 
+    // test animation
+    $(".enemies h2").removeClass("opacityPulse-css");
     console.log("Selected an enemy!");
 
     // match HTML id to object id
