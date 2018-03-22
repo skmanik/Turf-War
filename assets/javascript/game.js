@@ -26,7 +26,7 @@ $(document).ready(function() {
 
     var andresDino = {
         id: "blue",
-        name: "Andrés",
+        name: "Andres",
         healthPoints: 120,
         attackPower: 9,
         counterAttack: 10,
@@ -36,7 +36,7 @@ $(document).ready(function() {
 
     var belenDino = {
         id: "purple",
-        name: "Belén",
+        name: "Belen",
         healthPoints: 90,
         attackPower: 12,
         counterAttack: 15,
@@ -110,6 +110,33 @@ $(document).ready(function() {
         updateStats();
 
     };
+
+    // function that lets user retry game
+    $("#retry").click(function() {
+
+        location.reload();
+
+    });
+
+    // function that replaces attack button with retry button
+    function retryButton() {
+
+        $(".widget .button").detach();
+        $(".widget #retry").css("display", "block");                
+
+    };
+
+    // tooltip bc i forgot to display stats and i'm lazy now
+    function toolTip(id, dino) {
+
+        $("#" + id).attr("title", dino.healthPoints + " HP, " + dino.attackPower + " AP, " + dino.counterAttack + " CP" );
+
+    };
+
+    toolTip(julioDino.id, julioDino);
+    toolTip(diegoDino.id, diegoDino);
+    toolTip(andresDino.id, andresDino);
+    toolTip(belenDino.id, belenDino);
 
     // ======================== GAME START
     // ===================================
@@ -188,8 +215,10 @@ $(document).ready(function() {
         // moves up header
         $("header").css("height", "0px");
 
-        // moves in statbox
+        // moves in statbox and hide irrelevant data
         $(".ready-stats").css("display", "block");
+        $("#player-stats .cattack").css("display", "none");
+        $("#enemy-stats .attack").css("display", "none");
 
         // moves in widget and allows attack button to be clicked
         $(".widget").css("display", "block");
@@ -216,12 +245,33 @@ $(document).ready(function() {
 
         // runs battle sequence for current dinos
         battleSequence(ourDinoOut, enemyDinoOut);
-        $(".widget #combat-text").html("test");
+        $(".widget #combat-text").html(ourDinoOut.name + " kicks " + enemyDinoOut.name + ", who retaliates swiftly!" + "<br>" + ourDinoOut.name + " has " + ourDinoOut.healthPoints + " HP and " + enemyDinoOut.name + " has " + enemyDinoOut.healthPoints + " HP.");
 
+        // runs when player is dead
+        if (ourDinoOut.healthPoints <=0) {
+            
+            // replaces attack with retry button
+            retryButton();
+
+            // adds player death animation sequence
+            $("#" + ourDinoOut.id + " img").attr("src", "assets/images/stilldino.gif");
+            $("#" + ourDinoOut.id).fadeOut(1000, function() {
+
+                $(this).detach();
+
+            });
+            $("#player-stats").fadeOut(1000);
+            $(".widget h2").removeClass("opacityPulse-css");
+            $(".widget h2").text("Game Over");
+            $(".widget #combat-text").text("You lost the Turf War! Try again?");
+
+            return;
+
+        }
         // runs when enemy is dead
-        if (enemyDinoOut.healthPoints <= 0) {
+        else if (enemyDinoOut.healthPoints <= 0) {
 
-            // turns off attack so it can't be pressed further on dead target
+            // turns off attack so it can't be pressed further
             $(".widget").off("click", ".button");
             $(".widget .button").addClass("grayout");
 
@@ -245,7 +295,8 @@ $(document).ready(function() {
 
                 console.log("Game over!");
                 $(".widget h2").text("Game Over");
-                $(".widget #combat-text").text("You won the Turf War! Congratulations!");
+                $(".widget #combat-text").text("You won the Turf War! The plot of grass is yours! Oh baby!");
+                retryButton();
                 
                 return;
 

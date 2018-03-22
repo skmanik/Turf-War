@@ -38,7 +38,8 @@ header {
     box-shadow: inset 0px 0px 10px #0000002e;
 
     /* prefix this */
-    filter: hue-rotate(-20deg) saturate(2000%);
+    -webkit-transform: skewY(3deg);
+    -ms-transform: skewY(3deg);
     transform: skewY(3deg);
 
     /* for removal */
@@ -85,9 +86,6 @@ section.dino-select {
 
 .default-port img {
     width: 100%;
-
-    /* prefix this */
-    filter: saturate(0%);
 }
 
 .default-port {
@@ -180,7 +178,7 @@ section.dino-select {
     animation-delay: 0.6s;
 }
 
-.widget .button {
+.widget .button, .widget #retry {
     display: block;
     position: relative;
     text-transform: uppercase;
@@ -189,6 +187,10 @@ section.dino-select {
     box-shadow: 0px 6px #d66664;
     border-radius: 8px;
     cursor: pointer;
+}
+
+.widget #retry {
+    display: none;
 }
 
 /* grayed out button */
@@ -202,10 +204,10 @@ section.dino-select {
 #combat-text {
     position: absolute;
     left: 0;
-    bottom: -75px;
-    font-size: 10px;
+    bottom: -95px;
+    font-size: 9px;
     line-height: 200%;
-    text-transform: lowercase;
+    text-transform: uppercase;
     width: 100%;
 }
 
@@ -216,7 +218,7 @@ section.dino-select {
     float: left;
     background: #ffffff52;
     padding: 5px 10px;
-    margin-top: 20px;
+    margin-top: 33px;
     animation-delay: 0.6s;
     min-width: 200px;
 }
@@ -267,16 +269,18 @@ section.dino-select {
 /* == animations == */
 /* ================ */
 
-.widget .button:hover {
+.widget .button:hover, .widget #retry:hover {
     /* prefix this */
+    -webkit-filter: brightness(98%);
     filter: brightness(98%);
 }
 
-.widget .button:active {
+.widget .button:active, .widget #retry:active {
     top: 2px;
     box-shadow: 0px 4px #d56663;
 
     /* prefix this */
+    -webkit-filter: brightness(98%); 
     filter: brightness(98%);
 }
 
@@ -307,15 +311,16 @@ section.dino-select {
 /* blinking headers */
 
 .opacityPulse-css {
+    -webkit-animation: opacityPulse 1.25s ease-out;
     animation: opacityPulse 1.25s ease-out;
     animation-iteration-count: infinite; 
     opacity: 1;
 }
 
 @keyframes pulsate {
-    0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+    0% {transform: scale(0.1, 0.1); opacity: 0.0;}
     50% {opacity: 1.0;}
-    100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+    100% {transform: scale(1.2, 1.2); opacity: 0.0;}
 }
 
 @keyframes opacityPulse {
