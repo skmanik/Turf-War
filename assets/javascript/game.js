@@ -3,40 +3,25 @@ $(document).ready(function() {
 // ================== GLOBAL VARIABLES
 // ===================================
 
-// chosen dinos updated outside their onclick functions
-var ourDinoOut;
-var enemyDinoOut;
-
 // all dino objects
 var julioDino = {
     id: "yellow",
     name: "Julio",
     healthPoints: 100,
 	attackPower: 10,
-    counterAttack: 15,
+    counterAttack: 13,
+    baseAp: 10,
     isChosen: false,
     isActiveEnemy: false,
-    battle: function(defender) {
-
-        // enemy is hit for current AP
-        defender.healthPoints = defender.healthPoints - julioDino.attackPower;
-        console.log("Enemy: " + defender.healthPoints);
-
-        // current AP goes up
-        julioDino.attackPower = julioDino.attackPower + 5;
-        console.log("Julio's attack power increases! Oh baby!");
-        console.log("Julio: " + julioDino.attackPower);
-
-    }
 };
-
 
 var diegoDino = {
     id: "orange",
     name: "Diego",
     healthPoints: 80,
     attackPower: 7,
-    counterAttack: 20,
+    counterAttack: 15,
+    baseAp: 7,
     isChosen: false,
     isActiveEnemy: false
 };
@@ -47,6 +32,7 @@ var andresDino = {
     healthPoints: 120,
     attackPower: 5,
     counterAttack: 5,
+    baseAp: 5,
     isChosen: false,
     isActiveEnemy: false
 }
@@ -55,11 +41,16 @@ var belenDino = {
     id: "purple",
     name: "Belén",
     healthPoints: 90,
-    attackPower: 20,
-    counterAttack: 30,
+    attackPower: 12,
+    counterAttack: 10,
+    baseAp: 12,
     isChosen: false,
     isActiveEnemy: false
 }
+
+// chosen dinos updated outside their onclick functions
+var ourDinoOut;
+var enemyDinoOut;
 
 // array for objects
 var dinoArray = [julioDino, diegoDino, andresDino, belenDino];
@@ -98,6 +89,25 @@ function updateStats() {
     $("#enemy-stats .cattack .rs-label").text(enemyDinoOut.counterAttack + " CP");
 
 };
+
+// function that initiates battle sequence
+var battleSequence = function(player, defender) {
+
+    // enemy is hit for current AP
+    defender.healthPoints = defender.healthPoints - player.attackPower;
+    console.log("Enemy: " + defender.healthPoints);
+
+    // current AP goes up
+    player.attackPower = player.attackPower + player.baseAp;
+    console.log("Player attack power increases! Oh baby!");
+    console.log("Player: " + player.attackPower);
+
+    // enemy counter attacks!
+    player.healthPoints = player.healthPoints - defender.counterAttack
+
+    updateStats();
+
+}
 
 // ======================== GAME START
 // ===================================
@@ -199,7 +209,7 @@ $(".widget").on("click", ".button", function() {
 
         $(".widget #combat-text").text("Geez Julio! Use your words!");
 
-        julioDino.battle(enemyDinoOut);
+        battleSequence(ourDinoOut, enemyDinoOut);
         console.log("You clicked attack! Good boy!");
 
     }
