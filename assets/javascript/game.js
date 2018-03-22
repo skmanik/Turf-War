@@ -13,6 +13,7 @@ var julioDino = {
     baseAp: 10,
     isChosen: false,
     isActiveEnemy: false,
+    isDefeated: false
 };
 
 var diegoDino = {
@@ -23,7 +24,8 @@ var diegoDino = {
     counterAttack: 15,
     baseAp: 7,
     isChosen: false,
-    isActiveEnemy: false
+    isActiveEnemy: false,
+    isDefeated: false
 };
 
 var andresDino = {
@@ -34,7 +36,8 @@ var andresDino = {
     counterAttack: 5,
     baseAp: 5,
     isChosen: false,
-    isActiveEnemy: false
+    isActiveEnemy: false,
+    isDefeated: false
 }
 
 var belenDino = {
@@ -45,7 +48,8 @@ var belenDino = {
     counterAttack: 10,
     baseAp: 12,
     isChosen: false,
-    isActiveEnemy: false
+    isActiveEnemy: false,
+    isDefeated: false
 }
 
 // chosen dinos updated outside their onclick functions
@@ -91,7 +95,7 @@ function updateStats() {
 };
 
 // function that initiates battle sequence
-var battleSequence = function(player, defender) {
+function battleSequence(player, defender) {
 
     // enemy is hit for current AP
     defender.healthPoints = defender.healthPoints - player.attackPower;
@@ -107,7 +111,60 @@ var battleSequence = function(player, defender) {
 
     updateStats();
 
-}
+};
+
+// function that pertains to onclick for enemy selection
+function enemySelected() {
+
+    // permits statbox animation
+    $("#enemy-stats").removeClass("bounceOutDown").addClass("bounceInUp");
+
+    // function that turns click off after one performance
+    $(".enemies").off("click", ".default-port", enemySelected);
+
+    // removes blink animation
+    $(".enemies h2").removeClass("opacityPulse-css");
+    console.log("Selected an enemy!");
+
+    // matchs HTML id to object id
+    var enemyId = $(this).attr("id");
+    var enemyDino = getDinoWithId(enemyId);
+
+    enemyDino.isActiveEnemy = true;
+    console.log(enemyDino);
+
+    // adds new flip animation for dinos
+    $("#" + enemyId).removeClass("flipInY").addClass("flipInX");
+
+    // move sselected enemy to defender section
+    $("#" + enemyId).detach().appendTo("#active-enemy");
+
+    // adds idle animation for chosen dino
+    $("#" + enemyId + " img").attr("src", "assets/images/activedino.gif");
+
+    // moves up header
+    $("header").css("height", "0px");
+
+    // moves in statbox
+    $(".ready-stats").css("display", "block");
+
+    // moves in widget
+    $(".widget").css("display", "block");
+
+    // adds blink animation to direct user
+    $(".widget h2").addClass("opacityPulse-css");
+
+    // updates dino variable outside function
+    enemyDinoOut = enemyDino;
+
+    // displays stats of dinos for battle; delayed for style
+    setTimeout(function() {
+
+        updateStats();
+
+    }, 1000);
+
+};
 
 // ======================== GAME START
 // ===================================
@@ -117,23 +174,23 @@ $(".dino-select").one("click", ".default-port", function() {
 
     console.log("Selected a dino!");
 
-    // match HTML id to object id
+    // matches HTML id to object id
     var chosenId = $(this).attr("id");
     var ourDino = getDinoWithId(chosenId);
 
     ourDino.isChosen = true;
 
-    // remove blink animation on select
+    // removes blink animation on select
     $("#" + chosenId).removeClass("flipInY").addClass("flipInX");
     $(".dino-select h2").removeClass("opacityPulse-css");
 
     $(".dino-select h2").text("Player");
 
     // idle animation for chosen dino
-    $("#" + chosenId + " img").attr("src", "assets/images/activedino.gif")
+    $("#" + chosenId + " img").attr("src", "assets/images/activedino.gif");
     console.log(ourDino);
 
-    // remove unchosen dinos and add to enemy section
+    // removes unchosen dinos and add to enemy section
     for (var i = 0; i < dinoArray.length; i++) {
         if (dinoArray[i].isChosen === false) {
 
@@ -144,81 +201,51 @@ $(".dino-select").one("click", ".default-port", function() {
         }
     }
 
-    // add blink animation to direct user
+    // adds blink animation to direct user
     $(".enemies h2").addClass("opacityPulse-css");
 
-    // update dino variable outside function
+    // updates dino variable outside function
     ourDinoOut = ourDino;
 
 });
 
-// onclick that selects an enemy to fight, ONLY PERFORMED ONCE
-$(".enemies").one("click", ".default-port", function() {
-
-    // remove blink animation
-    $(".enemies h2").removeClass("opacityPulse-css");
-    console.log("Selected an enemy!");
-
-    // match HTML id to object id
-    var enemyId = $(this).attr("id");
-    var enemyDino = getDinoWithId(enemyId);
-
-    enemyDino.isActiveEnemy = true;
-    console.log(enemyDino);
-
-    // add new flip animation
-    $("#" + enemyId).removeClass("flipInY").addClass("flipInX");
-
-    // move selected enemy to defender section
-    $("#" + enemyId).detach().appendTo("#active-enemy");
-
-    // idle animation for chosen dino
-    $("#" + enemyId + " img").attr("src", "assets/images/activedino.gif")
-
-    // move up header
-    $("header").css("height", "0px");
-
-    // move in statbox
-    $(".ready-stats").css("display", "block");
-
-    // move in widget
-    $(".widget").css("display", "block");
-
-    // add blink animation to direct user
-    $(".widget h2").addClass("opacityPulse-css");
-
-    // update dino variable outside function
-    enemyDinoOut = enemyDino;
-
-    // display stats of dinos for battle; delayed for style
-    setTimeout(function() {
-
-        updateStats();
-
-    }, 1000);
-
-});
+// onclick that selects an enemy to fight, ONLY PERFORMED ONCE PER BATTLE
+$(".enemies").on("click", ".default-port", enemySelected);
 
 // onclick for ATTACK BUTTON that signals fight sequence. PERFORMED REPEATEDLY.
 $(".widget").on("click", ".button", function() {
 
-    //console.log("You clicked attack! Good boy!");
-    //console.log(enemyDinoOut.healthPoints);
+    battleSequence(ourDinoOut, enemyDinoOut);
 
-    if (enemyDinoOut.healthPoints > 0) {
+    $(".widget #combat-text").html("test");
 
-        $(".widget #combat-text").text("Geez Julio! Use your words!");
+    if (enemyDinoOut.healthPoints <= 0) {
 
-        battleSequence(ourDinoOut, enemyDinoOut);
-        console.log("You clicked attack! Good boy!");
+        // enemy death animation sequence
+        $("#" + enemyDinoOut.id + " img").attr("src", "assets/images/stilldino.gif");
+        $("#" + enemyDinoOut.id).fadeOut(1000, function() {
 
-    }
+            // completion handler
+            $(this).detach();
 
-    else {
-
-        console.log("You're dead!");
+        });
+        $("#enemy-stats").fadeOut(1000);
         $(".widget h2").removeClass("opacityPulse-css");
+        $(".widget #combat-text").text("You defeated " + enemyDinoOut.name + "! Select another enemy.");
+
+        // turns off attack so it can't be pressed further on dead target
+        $(".widget").off("click", ".button");
+        $(".widget .button").addClass("grayout");
+
+        // adds blink animation to direct user back to enemy selection
         $(".enemies h2").addClass("opacityPulse-css");
+
+        // permits enemy selection onclick event with 1 second delay
+        setTimeout(function() {
+
+            $(".enemies").on("click", ".default-port", enemySelected);
+
+        }, 1000);
 
     }
 

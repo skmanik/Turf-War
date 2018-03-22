@@ -191,12 +191,21 @@ section.dino-select {
     cursor: pointer;
 }
 
+/* grayed out button */
+.grayout {
+    color: #a7a5a5 !important;
+    background: #cacaca !important;
+    box-shadow: 0px 6px #a7a5a5 !important;
+}
+
+
 #combat-text {
     position: absolute;
     left: 0;
     bottom: -75px;
     font-size: 10px;
-    text-transform: uppercase;
+    line-height: 200%;
+    text-transform: lowercase;
     width: 100%;
 }
 
@@ -269,6 +278,12 @@ section.dino-select {
 
     /* prefix this */
     filter: brightness(98%);
+}
+
+/* grayed out button */
+
+.widget .grayout:active {
+    box-shadow: 0px 4px #a7a5a5 !important;
 }
 
 /* dino colors */
