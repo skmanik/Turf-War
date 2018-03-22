@@ -3,23 +3,40 @@ $(document).ready(function() {
 // ================== GLOBAL VARIABLES
 // ===================================
 
-// dino objects
+// chosen dinos updated outside their onclick functions
+var ourDinoOut;
+var enemyDinoOut;
+
+// all dino objects
 var julioDino = {
     id: "yellow",
     name: "Julio",
     healthPoints: 100,
 	attackPower: 10,
-    counterAttack: 5,
+    counterAttack: 15,
     isChosen: false,
-    isActiveEnemy: false
+    isActiveEnemy: false,
+    battle: function(defender) {
+
+        // enemy is hit for current AP
+        defender.healthPoints = defender.healthPoints - julioDino.attackPower;
+        console.log("Enemy: " + defender.healthPoints);
+
+        // current AP goes up
+        julioDino.attackPower = julioDino.attackPower + 5;
+        console.log("Julio's attack power increases! Oh baby!");
+        console.log("Julio: " + julioDino.attackPower);
+
+    }
 };
+
 
 var diegoDino = {
     id: "orange",
     name: "Diego",
     healthPoints: 80,
-    attackPower: 30,
-    counterAttack: 3,
+    attackPower: 7,
+    counterAttack: 20,
     isChosen: false,
     isActiveEnemy: false
 };
@@ -29,7 +46,7 @@ var andresDino = {
     name: "Andrés",
     healthPoints: 120,
     attackPower: 5,
-    counterAttack: 10,
+    counterAttack: 5,
     isChosen: false,
     isActiveEnemy: false
 }
@@ -43,10 +60,6 @@ var belenDino = {
     isChosen: false,
     isActiveEnemy: false
 }
-
-// dinos variables updated outside their onclick functions
-var ourDinoOut;
-var enemyDinoOut;
 
 // array for objects
 var dinoArray = [julioDino, diegoDino, andresDino, belenDino];
@@ -85,9 +98,6 @@ function updateStats() {
     $("#enemy-stats .cattack .rs-label").text(enemyDinoOut.counterAttack + " CP");
 
 };
-
-// delay variable to line up animations
-var delayInMilliseconds = 1000;
 
 // ======================== GAME START
 // ===================================
@@ -164,31 +174,43 @@ $(".enemies").one("click", ".default-port", function() {
     // move in widget
     $(".widget").css("display", "block");
 
-    // add blink animation to direct user: need to put a delay somehow before i add this
-    // $(".widget h2").addClass("opacityPulse-css");
+    // add blink animation to direct user
+    $(".widget h2").addClass("opacityPulse-css");
 
     // update dino variable outside function
     enemyDinoOut = enemyDino;
 
     // display stats of dinos for battle; delayed for style
-
     setTimeout(function() {
 
         updateStats();
 
-    }, delayInMilliseconds);
+    }, 1000);
 
 });
 
 // onclick for ATTACK BUTTON that signals fight sequence. PERFORMED REPEATEDLY.
 $(".widget").on("click", ".button", function() {
 
-    // putting this in here temporarily
-    // updateStats();
+    //console.log("You clicked attack! Good boy!");
+    //console.log(enemyDinoOut.healthPoints);
 
-    console.log("You clicked attack! Good boy!");
+    if (enemyDinoOut.healthPoints > 0) {
 
-    $(".widget #combat-text").text("Enemy took damage from that hit! Ow.");
+        $(".widget #combat-text").text("Geez Julio! Use your words!");
+
+        julioDino.battle(enemyDinoOut);
+        console.log("You clicked attack! Good boy!");
+
+    }
+
+    else {
+
+        console.log("You're dead!");
+        $(".widget h2").removeClass("opacityPulse-css");
+        $(".enemies h2").addClass("opacityPulse-css");
+
+    }
 
 });
 

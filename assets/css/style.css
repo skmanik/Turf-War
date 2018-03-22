@@ -10,6 +10,14 @@ html {
     box-sizing: inherit;
 }
 
+.clearfix:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0; 
+    clear: both;
+}
+
 body {
     background: url("../images/grass.png");
     color: #404040;
@@ -207,7 +215,7 @@ section.dino-select {
 .rs-label {
     float: left;
     font-size: 8px;
-    line-height: 11px;
+    line-height: 12px;
     margin-right: 5px;
     word-spacing: -5px;
     width: 45px;
@@ -224,6 +232,7 @@ section.dino-select {
     width: 0;
     height: 100%;
     float: left;
+    border-radius: 0px 10px 10px 0px;
     transition: 0.4s ease-in-out;
 }
 
@@ -232,6 +241,7 @@ section.dino-select {
     height: 100%;
     float: left;
     background: #746bff;
+    border-radius: 0px 10px 10px 0px;
     transition: 0.4s ease-in-out;
 }
 
@@ -240,6 +250,7 @@ section.dino-select {
     height: 100%;
     float: left;
     background: #fff478;
+    border-radius: 0px 10px 10px 0px;
     transition: 0.4s ease-in-out;
 
 }
