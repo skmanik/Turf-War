@@ -216,12 +216,12 @@ $(document).ready(function() {
         $("header").css("height", "0px");
 
         // moves in statbox and hide irrelevant data
-        $(".ready-stats").css("display", "block");
+        $(".ready-stats").css("display", "block").addClass("animated bounceInUp");
         $("#player-stats .cattack").css("display", "none");
         $("#enemy-stats .attack").css("display", "none");
 
         // moves in widget and allows attack button to be clicked
-        $(".widget").css("display", "block");
+        $(".widget").css("display", "block").addClass("animated bounceInDown");
         $(".widget .button").removeClass("grayout");
         $(".widget").on("click", ".button", attackClicked);
 
@@ -282,7 +282,7 @@ $(document).ready(function() {
             // adds enemy death animation sequence        
             $("#" + enemyDinoOut.id + " img").attr("src", "assets/images/stilldino.gif");
             $("#" + enemyDinoOut.id).fadeOut(1000, function() {
-
+                
                 $(this).detach();
 
             });
