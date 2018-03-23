@@ -301,6 +301,7 @@ $(document).ready(function() {
             return;
 
         }
+        
         // runs when enemy is dead
         else if (enemyDinoOut.healthPoints <= 0) {
 
