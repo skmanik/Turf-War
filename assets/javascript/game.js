@@ -255,11 +255,13 @@ $(document).ready(function() {
 
             // adds player death animation sequence
             $("#" + ourDinoOut.id + " img").attr("src", "assets/images/stilldino.gif");
+            $("#" + ourDinoOut.id).removeClass("flipInX");
             $("#" + ourDinoOut.id).fadeOut(1000, function() {
 
                 $(this).detach();
 
             });
+            $("#player-stats").removeClass("bounceInUp");
             $("#player-stats").fadeOut(1000);
             $(".widget h2").removeClass("opacityPulse-css");
             $(".widget h2").text("Game Over");
@@ -281,11 +283,13 @@ $(document).ready(function() {
 
             // adds enemy death animation sequence        
             $("#" + enemyDinoOut.id + " img").attr("src", "assets/images/stilldino.gif");
+            $("#" + enemyDinoOut.id).removeClass("flipInX");
             $("#" + enemyDinoOut.id).fadeOut(1000, function() {
                 
                 $(this).detach();
 
             });
+            $("#enemy-stats").removeClass("bounceInUp");
             $("#enemy-stats").fadeOut(1000);
             $(".widget h2").removeClass("opacityPulse-css");
             $(".widget #combat-text").text("You defeated " + enemyDinoOut.name + "! Select another enemy.");
