@@ -138,6 +138,16 @@ $(document).ready(function() {
     toolTip(andresDino.id, andresDino);
     toolTip(belenDino.id, belenDino);
 
+    // optional music stuff
+    var selectTheme = document.createElement("audio");
+    selectTheme.setAttribute("src", "assets/music/skyrunner.mp3");  
+    selectTheme.loop = true;
+    selectTheme.play();
+
+    var bossThemeStart = false;
+    var bossTheme = document.createElement("audio");
+    bossTheme.setAttribute("src", "assets/music/sanctuaryboss.mp3");
+
     // ======================== GAME START
     // ===================================
 
@@ -212,6 +222,19 @@ $(document).ready(function() {
         // adds idle animation for selected enemy
         $("#" + enemyId + " img").attr("src", "assets/images/activedino.gif");
 
+        // boss music
+        if (bossThemeStart === false) {
+
+            selectTheme.loop = false;
+            selectTheme.pause();
+  
+            bossTheme.loop = true;
+            bossTheme.play();
+
+            bossThemeStart = true;
+
+        }
+
         // moves up header
         $("header").css("height", "0px");
 
@@ -249,6 +272,14 @@ $(document).ready(function() {
 
         // runs when player is dead
         if (ourDinoOut.healthPoints <=0) {
+
+            // music
+            bossTheme.loop = false;
+            bossTheme.pause();
+
+            var lossTheme = document.createElement("audio");
+            lossTheme.setAttribute("src", "assets/music/baddream.mp3");
+            lossTheme.play();
             
             // replaces attack with retry button
             retryButton();
@@ -297,9 +328,17 @@ $(document).ready(function() {
             // checks if game is over
             if (killTrack === dinoArray.length - 1) {
 
+                // music
+                bossTheme.loop = false;
+                bossTheme.pause();
+
+                var winTheme = document.createElement("audio");
+                winTheme.setAttribute("src", "assets/music/thatwaseasy.mp3");
+                winTheme.play();
+
                 console.log("Game over!");
                 $(".widget h2").text("Game Over");
-                $(".widget #combat-text").text("You won the Turf War! The plot of grass is yours! Oh baby!");
+                $(".widget #combat-text").text("You won the Turf War! This plot of grass is yours! Oh baby!");
                 retryButton();
                 
                 return;
